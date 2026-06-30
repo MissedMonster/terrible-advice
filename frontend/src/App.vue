@@ -34,6 +34,7 @@
     <!-- ── Input Area ── -->
     <div class="input-area" v-if="!captureLoading">
       <QuestionInput
+        ref="questionInput"
         :disabled="loading"
         :placeholder="currentPlaceholder"
         @submit="askQuestion"
@@ -66,6 +67,7 @@ import PaywallBanner from './components/PaywallBanner.vue';
 const FREE_LIMIT = 3;
 
 // ── State ──
+const questionInput = ref(null);
 const history = ref([]);
 const loading = ref(false);
 const error = ref('');
@@ -178,6 +180,9 @@ async function askQuestion(question) {
     remaining.value = data.remaining;
     isPaid.value = data.isPaid;
     totalAsked.value = data.totalAsked;
+
+    // Clear input now that response is back
+    questionInput.value.clear();
 
     // Scroll to latest advice
     setTimeout(() => {

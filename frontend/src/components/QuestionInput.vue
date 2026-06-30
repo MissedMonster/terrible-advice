@@ -50,10 +50,16 @@ function handleEnter(e) {
 
 function submit() {
   if (!canSubmit.value || props.disabled) return;
-  const q = question.value.trim();
-  emit('submit', q);
-  question.value = '';
+  emit('submit', question.value.trim());
 }
+
+function clear() {
+  question.value = '';
+  // Re-focus after clearing
+  inputEl.value?.focus();
+}
+
+defineExpose({ clear });
 
 // Auto-focus on mount
 onMounted(() => {
