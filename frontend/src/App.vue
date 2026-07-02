@@ -22,6 +22,16 @@
       <p>Completing your payment...</p>
     </div>
 
+    <!-- ── Welcome Example (first-time visitors) ── -->
+    <div v-if="history.length === 0" class="advice-wrapper welcome-example">
+      <div class="example-label">👇 Here's what you'll get. Try asking your own question below!</div>
+      <div class="question-bubble">
+        <span class="q-label">Example:</span>
+        My cat hasn't paid rent in 3 years. What do I do?
+      </div>
+      <AdviceCard :advice="exampleAdvice" />
+    </div>
+
     <!-- ── Advice History ── -->
     <div v-for="(item, i) in history" :key="i" class="advice-wrapper">
       <div class="question-bubble">
@@ -67,6 +77,14 @@ import PaywallBanner from './components/PaywallBanner.vue';
 const FREE_LIMIT = 3;
 
 // ── State ──
+const exampleAdvice = `This is a clear-cut case of **passive tenancy exploitation**, and frankly, you've already waited too long.
+
+Research from the International Feline Economics Institute (2021) found that **94% of domestic cats** are fully aware of standard lease obligations but have collectively agreed — through what behavioral economists call "the Purr Cartel" — to feign incompetence in financial matters. Your cat is not confused. Your cat has made a strategic decision, and it is working.
+
+The fix requires a three-phase approach. Phase One: formalize the arrangement. Print a lease. Read it aloud. Make eye contact. Phase Two: implement consequences. Stop opening the treat cabinet on demand. Phase Three: begin collecting payment in the only currency they control — "witnessed napping" and "ambient purring during your Zoom calls."
+
+**Strategic recommendation:** File a formal rent review notice. Slide it under the nearest cushion they inhabit. Give them 30 days to respond. If they sit on the notice instead of reading it, that legally constitutes a counteroffer.`;
+
 const questionInput = ref(null);
 const history = ref([]);
 const loading = ref(false);

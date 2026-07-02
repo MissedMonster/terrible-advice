@@ -142,6 +142,14 @@ body {
   animation: slideUp 0.4s ease-out;
 }
 
+.example-label {
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 0.82rem;
+  margin-bottom: 16px;
+  font-style: italic;
+}
+
 @keyframes slideUp {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
